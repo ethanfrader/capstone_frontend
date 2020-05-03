@@ -3,8 +3,8 @@
     <div>
       <h1>{{ artist.name }}</h1>
       <h4>{{artist.location}} -- {{artist.genre}}</h4>
-      <p>{{ artist.bio }}</p>
-      <p>{{artist.members}}</p>
+      <p><strong>About them:</strong> {{ artist.bio }}</p>
+      <p><strong>Members:</strong> {{artist.members}}</p>
       <div v-for="image in images">
         <img :src="image.url" height=200px>
       </div>
