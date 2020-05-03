@@ -2,9 +2,10 @@
   <div class="home">
     <div v-for="artist in artists">
       <h1>{{ artist.name }}</h1>
+      <p>{{ artist.location }} -- {{artist.genre}}</p>
       <img :src="artist.images[0].url" height=150px>
-      <p>{{ artist.bio }}</p>
       <br>
+      <router-link :to="`/artists/${artist.id}`">See more</router-link>
     </div>
   </div>
 </template>
