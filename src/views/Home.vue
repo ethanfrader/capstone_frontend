@@ -1,6 +1,7 @@
 <template>
   <div class="home">
     <h1>{{ message }}</h1>
+    <h4>{{ body }}</h4>
   </div>
 </template>
 
@@ -11,7 +12,8 @@
 export default {
   data: function() {
     return {
-      message: "Welcome to Vue.js!",
+      message: "Welcome to GigSpace!",
+      body: "Please sign in to continue.",
     };
   },
   created: function() {},
