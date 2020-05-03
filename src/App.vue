@@ -6,8 +6,10 @@
       <router-link v-if="!jwt" to="/signup">Signup</router-link> |
       <router-link v-if="!jwt" to="/login">Login</router-link> |
       <router-link v-if="jwt" to="/logout">Logout</router-link> |
-      <router-link to="/artists">Artists</router-link>
+      <router-link to="/artists">Artists</router-link> |
+      <router-link :to="`/users/${userId}`">Hi, {{user.first_name}}</router-link>
     </div>
+
     <router-view/>
   </div>
 </template>
@@ -42,19 +44,23 @@ export default {
   data: function() {
     return {
       jwt: null,
-      // user: {},
+      userId: "",
+      user: {},
     };
   },
   created: function() {
     this.setJwt();
-    // want to put user's name and picture up top when logged in
-    // axios.get("/api/users").then(response => {
-    //   this.user = response.data;
-    // });
+    this.setUserId();
   },
   methods: {
     setJwt: function() {
       this.jwt = localStorage.jwt;
+    },
+    setUserId: function() {
+      this.userId = localStorage.userId;
+      axios.get("/api/users/" + this.userId).then(response => {
+        this.user = response.data;
+      });
     },
   },
 };
