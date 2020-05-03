@@ -6,6 +6,7 @@
       <h2>{{user.first_name}}'s artist pages:</h2>
       <div v-for="artist in user.artists">
         <h3>{{ artist.name }}</h3>
+        <router-link :to="`/artists/${artist.id}`">Go to page</router-link>
       </div>
     </div>
     <br>
