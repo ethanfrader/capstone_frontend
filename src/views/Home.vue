@@ -13,7 +13,7 @@ export default {
   data: function() {
     return {
       message: "Welcome to GigSpace!",
-      body: "Please sign in to continue.",
+      body: "Please sign in or sign up to continue.",
     };
   },
   created: function() {},
