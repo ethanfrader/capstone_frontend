@@ -1,9 +1,13 @@
 <template>
   <div class="home">
-    <div v-for="artist in artists">
+    <div>
       <h1>{{ artist.name }}</h1>
-      <img :src="artist.images[0].url" height=150px>
+      <h4>{{artist.location}} -- {{artist.genre}}</h4>
       <p>{{ artist.bio }}</p>
+      <p>{{artist.members}}</p>
+      <div v-for="image in images">
+        <img :src="image.url" height=200px>
+      </div>
       <br>
     </div>
   </div>
@@ -18,14 +22,16 @@ var axios = require("axios");
 export default {
   data: function() {
     return {
-      artists: [],
+      artist: [],
+      images: [],
     };
   },
   created: function() {
     axios
-      .get("/api/artists")
+      .get("/api/artists/" + this.$route.params.id)
       .then(response => {
-        this.artists = response.data;
+        this.artist = response.data;
+        this.images = this.artist.images;
       })
       .catch(error => {
         console.log(error);

@@ -5,6 +5,7 @@ import Signup from "../views/Signup.vue";
 import Login from "../views/Login.vue";
 import Logout from "../views/Logout.vue";
 import ArtistsIndex from "../views/ArtistsIndex.vue";
+import ArtistsShow from "../views/ArtistsShow.vue";
 
 Vue.use(VueRouter);
 
@@ -26,6 +27,7 @@ const routes = [
   { path: "/login", name: "login", component: Login },
   { path: "/logout", name: "logout", component: Logout },
   { path: "/artists", name: "artists", component: ArtistsIndex },
+  { path: "/artists/:id", name: "artists-show", component: ArtistsShow },
 ];
 
 const router = new VueRouter({
