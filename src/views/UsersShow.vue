@@ -7,7 +7,7 @@
         <button>Edit info</button>
       </div>
       <h2>{{user.first_name}}'s artist pages:</h2>
-      <div v-if="user.artists.size == 0">
+      <div v-if="user.artists.length === 0">
           <h3>You don't have any linked artists!</h3>
       </div>
       <div v-for="artist in user.artists">

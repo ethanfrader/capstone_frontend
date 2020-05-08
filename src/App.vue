@@ -7,7 +7,8 @@
       <router-link v-if="!jwt" to="/login">Login</router-link> |
       <router-link v-if="jwt" to="/logout">Logout</router-link> |
       <router-link to="/artists">Artists</router-link> |
-      <router-link v-if="jwt" :to="`/users/${userId}`">Hi, {{user.first_name}}</router-link>
+      <router-link v-if="jwt" :to="`/users/${userId}`">Hi, {{user.first_name}}</router-link> |
+      <router-link v-if="jwt" to="/messages">Messages</router-link>
     </div>
 
     <router-view/>
