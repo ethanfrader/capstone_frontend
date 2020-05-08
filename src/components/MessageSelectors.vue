@@ -1,6 +1,5 @@
 <template>
   <div class="message-selectors">
-    <p>selectors</p>
     <message-selector v-for="message in messages" v-bind:message="message" v-bind:selectedMessageId="selectedMessageId" v-bind:key="message.id" />
   </div>
 </template>

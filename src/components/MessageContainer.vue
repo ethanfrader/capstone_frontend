@@ -1,19 +1,19 @@
 <template>
   <div class="message-container">
     <message-selectors />
-    <!-- <note-editor /> -->
+    <!-- <message-toggler /> -->
   </div>
 </template>
 
 <script>
 import MessageSelectors from "./MessageSelectors";
-// import NoteEditor from "./NoteEditor";
+import MessageToggler from "./MessageToggler";
 
 export default {
   name: "message-container",
   components: {
     MessageSelectors,
-    // NoteEditor,
+    // MessageToggler,
   },
 };
 </script>
