@@ -8,6 +8,7 @@ import ArtistsIndex from "../views/ArtistsIndex.vue";
 import ArtistsShow from "../views/ArtistsShow.vue";
 import UsersShow from "../views/UsersShow.vue";
 import Messages from "../views/Messages.vue";
+import Posts from "../views/Posts.vue";
 
 Vue.use(VueRouter);
 
@@ -32,6 +33,7 @@ const routes = [
   { path: "/artists/:id", name: "artists-show", component: ArtistsShow },
   { path: "/users/:id", name: "users-show", component: UsersShow },
   { path: "/messages", name: "messages", component: Messages },
+  { path: "/posts", name: "posts", component: Posts },
 ];
 
 const router = new VueRouter({
