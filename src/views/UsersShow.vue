@@ -4,6 +4,9 @@
       <h1>{{ user.first_name }} {{ user.last_name}}</h1>
       <img :src="user.profile_picture" height=100px>
       <h2>{{user.first_name}}'s artist pages:</h2>
+      <div v-if="user.artists.size == 0">
+          <h3>You don't have any linked artists!</h3>
+      </div>
       <div v-for="artist in user.artists">
         <h3>{{ artist.name }}</h3>
         <router-link :to="`/artists/${artist.id}`">Go to page</router-link>
