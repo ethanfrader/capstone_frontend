@@ -1,28 +1,23 @@
 <template>
-  <div>
-    <div>
-      <message-container />
-    </div>
+  <div class="message-selectors">
+    <p>selectors</p>
+    <message-selector v-for="message in messages" v-bind:message="message" v-bind:selectedMessageId="selectedMessageId" v-bind:key="message.id" />
   </div>
 </template>
 
-<style>
-</style>
-
 <script>
 var axios = require("axios");
-
-import MessageContainer from "../components/MessageContainer";
+import MessageSelector from "./MessageSelector";
 
 export default {
+  name: "message-selectors",
   components: {
-    MessageContainer,
+    MessageSelector,
   },
   data: function() {
     return {
       messages: [],
-      user: {},
-      currentUser: {},
+      selectedMessageId: 1,
     };
   },
   created: function() {
