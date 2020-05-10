@@ -18,7 +18,7 @@ export default {
   data: function() {
     return {
       message: "Welcome to GigSpace!",
-      body: "Please sign in or sign up to continue.",
+      body: "A place for artists to connect and build together.",
     };
   },
   created: function() {},
