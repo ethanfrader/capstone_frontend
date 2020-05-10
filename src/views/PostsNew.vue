@@ -8,7 +8,7 @@
         <div class="filter">
           <label for="basic-dropdown">Posting as: </label>
           <select name="basic-dropdown" v-model="artist">
-            <option v-for="artist in allArtits" :value="artist">{{artist.name}}</option>
+            <option v-for="artist in allArtists" :value="artist">{{artist.name}}</option>
           </select>
         </div>
         <div class="form-group">
