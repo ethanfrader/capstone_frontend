@@ -1,5 +1,7 @@
 <template>
   <div>
+    <router-link to="/posts-new">Add Post</router-link>
+    <h1>Recent posts:</h1>
     <div v-for="post in posts">
       <h4>{{post.artist.name}}: </h4><p>{{post.text}}</p>
       <small>Posted at {{post.created_at}}</small>

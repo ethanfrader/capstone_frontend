@@ -9,6 +9,7 @@ import ArtistsShow from "../views/ArtistsShow.vue";
 import UsersShow from "../views/UsersShow.vue";
 import Messages from "../views/Messages.vue";
 import Posts from "../views/Posts.vue";
+import PostsNew from "../views/PostsNew.vue";
 
 Vue.use(VueRouter);
 
@@ -34,6 +35,7 @@ const routes = [
   { path: "/users/:id", name: "users-show", component: UsersShow },
   { path: "/messages", name: "messages", component: Messages },
   { path: "/posts", name: "posts", component: Posts },
+  { path: "/posts-new", name: "posts-new", component: PostsNew },
 ];
 
 const router = new VueRouter({
