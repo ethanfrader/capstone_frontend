@@ -19,6 +19,13 @@
         <!-- <input type="submit" class="btn btn-primary" value="Submit"> -->
       </form>
 
+      <p>I am {{artist.name}} sending to {{receivingArtist.artist}}</p>
+
+      <form v-if="this.artist.id !== undefined && this.receivingArtist.id !== undefined" v-on:submit.prevent="submit()">
+        <label>New message for {{receivingArtist.artist.id}}: </label>
+        <input type="text" v-model="messageText">
+      </form>
+      <br>
       <div v-for="message in messages">
         <p v-if="message.artist.id === artist.id && message.recipient.id === receivingArtist.id" class="sent-message">{{message.text}}</p>
 
@@ -35,11 +42,11 @@
 <script>
 var axios = require("axios");
 
-import MessageContainer from "../components/MessageContainer";
+// import MessageContainer from "../components/MessageContainer";
 
 export default {
   components: {
-    MessageContainer,
+    // MessageContainer,
   },
   data: function() {
     return {
@@ -49,7 +56,9 @@ export default {
       allArtists: [],
       artist: {},
       artistMessages: [],
-      receivingArtist: [],
+      receivingArtist: {},
+      messageText: "",
+      sendTo: {},
     };
   },
   created: function() {
@@ -74,14 +83,7 @@ export default {
       });
   },
   methods: {
-    // submit: function() {
-    //   console.log(this.artist);
-    //   var params = { artist_id: this.artist.id };
-    //   axios.get("/api/messages", params).then(response => {
-    //     this.artistMessages = response.data;
-    //     console.log(this.artistMessages);
-    //   });
-    // },
+    startMessage: function() {},
   },
 };
 </script>
