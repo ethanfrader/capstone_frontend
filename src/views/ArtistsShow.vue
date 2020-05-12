@@ -1,18 +1,20 @@
 <template>
-  <div class="home">
-    <div>
-      <h1>{{ artist.name }}</h1>
-      <h4>{{artist.location}} -- {{artist.genre}}</h4>
-      <div v-if="artist.users.some(user => user.id === currentUser.id)">
-        <button>Edit info</button>
+  <div class="container">
+    <section>
+        <div>
+        <h1>{{ artist.name }}</h1>
+        <h4>{{artist.location}} -- {{artist.genre}}</h4>
+        <div v-if="artist.users.some(user => user.id === currentUser.id)">
+          <button class="btn btn-primary">Edit info</button>
+        </div>
+        <p><strong>About them:</strong> {{ artist.bio }}</p>
+        <p><strong>Members:</strong> {{artist.members}}</p>
+        <div v-for="image in images">
+          <img class="img-fluid" :src="image.url" height=200px>
+        </div>
+        <br>
       </div>
-      <p><strong>About them:</strong> {{ artist.bio }}</p>
-      <p><strong>Members:</strong> {{artist.members}}</p>
-      <div v-for="image in images">
-        <img :src="image.url" height=200px>
-      </div>
-      <br>
-    </div>
+    </section>
   </div>
 </template>
 
