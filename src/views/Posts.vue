@@ -1,8 +1,10 @@
 <template>
   <div>
     <section class="page-section">
-      <div class="link-container">
-        <router-link to="/posts-new" id="add-post">Add Post</router-link>
+      <div class="text-center">
+        <div>
+          <router-link class="btn btn-accent btn-xl" to="/posts-new" id="add-post">Add Post</router-link>
+        </div>
       </div>
     <h1>Recent posts:</h1>
 
@@ -11,7 +13,7 @@
         <h4>{{post.artist.name}}: </h4><p>{{post.text}}</p>
         <small>Posted at {{post.created_at}}</small>
         <div>
-          <button>Send them a message</button>
+          <button class="btn btn-dark">Send them a message</button>
         </div>
       </div>
     </div>

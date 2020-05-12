@@ -10858,7 +10858,7 @@ section#contact form#contactForm :-ms-input-placeholder {
   padding: 1rem;
   border-radius: 0.2rem 1rem 1rem 1rem;
   background-color: #fed136;
-  box-shadow: rgba(0, 0, 0, 0.075);
+  box-shadow: 0.25rem 0.25rem 0.25rem #888888;
 }
 .link-container {
   margin-right: 2rem;
@@ -10906,4 +10906,9 @@ section#contact form#contactForm :-ms-input-placeholder {
 }
 .profile-right #user-link {
   color: white;
+}
+.btn-accent {
+  color: #fed136;
+  background-color: #888888;
+  border-color: #888888;
 }

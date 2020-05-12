@@ -1,22 +1,24 @@
 <template>
-  <div>
-    <form v-on:submit.prevent="submit()">
-        <h1>New Post</h1>
-        <ul>
-          <li class="text-danger" v-for="error in errors">{{ error }}</li>
-        </ul>
-        <div class="filter">
-          <label for="basic-dropdown">Posting as: </label>
-          <select name="basic-dropdown" v-model="artist">
-            <option v-for="artist in allArtists" :value="artist">{{artist.name}}</option>
-          </select>
-        </div>
-        <div class="form-group">
-          <label>Your post:</label> 
-          <input type="text" class="form-control" v-model="text">
-        </div>
-        <input type="submit" class="btn btn-primary" value="Submit">
-      </form>
+  <div class="container">
+    <section>
+      <form v-on:submit.prevent="submit()">
+          <h1>New Post</h1>
+          <ul>
+            <li class="text-danger" v-for="error in errors">{{ error }}</li>
+          </ul>
+          <div class="filter">
+            <label for="basic-dropdown">Posting as: </label>
+            <select name="basic-dropdown" v-model="artist">
+              <option v-for="artist in allArtists" :value="artist">{{artist.name}}</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label>Your post:</label> 
+            <input type="text" class="form-control" v-model="text">
+          </div>
+          <input type="submit" class="btn btn-primary" value="Submit">
+        </form>
+      </section>
   </div>
 </template>
 
@@ -32,7 +34,7 @@ export default {
       post: {},
       user: {},
       currentUser: {},
-      allArtits: [],
+      allArtists: [],
       userId: "",
       artistId: "",
       artist: {},
@@ -46,8 +48,8 @@ export default {
       .then(response => {
         this.currentUser = response.data;
         console.log(this.currentUser);
-        this.allArtits = this.currentUser.artists;
-        console.log(this.allArtits);
+        this.allArtists = this.currentUser.artists;
+        console.log(this.allArtists);
       })
       .catch(error => {
         this.errors.push(error);
