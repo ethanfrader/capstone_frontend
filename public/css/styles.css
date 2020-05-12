@@ -10883,3 +10883,27 @@ section#contact form#contactForm :-ms-input-placeholder {
   border-radius: 1rem 1rem 1rem 0.2rem;
   margin-right: 20rem;
 }
+.profile-left {
+  width: 45%;
+  display: inline-block;
+  vertical-align: top;
+  margin-right: 5%;
+}
+.profile-left img {
+  max-width: 10rem;
+}
+.profile-left button {
+  margin-top: 1rem;
+}
+.profile-right {
+  width: 45%;
+  display: inline-block;
+  vertical-align: top;
+  background-color: #fed136;
+  padding: 1rem 2rem 1rem 2rem;
+  border-radius: 1rem;
+  box-shadow: 0.25rem 0.25rem 0.5rem #888888;
+}
+.profile-right #user-link {
+  color: white;
+}
