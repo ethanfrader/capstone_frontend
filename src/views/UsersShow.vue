@@ -6,7 +6,10 @@
           <h1>{{ user.first_name }} {{ user.last_name}}</h1>
           <img :src="user.profile_picture">
           <div v-if="user.id === currentUser.id">
-            <button class="btn btn-primary">Edit info</button>
+            <a :href="`/users/${user.id}/edit`">
+              <button class="btn btn-primary">Edit info</button>
+            </a>
+            
           </div>
         </div>
         <div class="profile-right">
