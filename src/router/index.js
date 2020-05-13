@@ -7,6 +7,7 @@ import Logout from "../views/Logout.vue";
 import ArtistsIndex from "../views/ArtistsIndex.vue";
 import ArtistsShow from "../views/ArtistsShow.vue";
 import ArtistsNew from "../views/ArtistsNew.vue";
+import ArtistsEdit from "../views/ArtistsEdit.vue";
 import ArtistsJoin from "../views/ArtistsJoin.vue";
 import UsersShow from "../views/UsersShow.vue";
 import UsersEdit from "../views/UsersEdit.vue";
@@ -34,6 +35,7 @@ const routes = [
   { path: "/login", name: "login", component: Login },
   { path: "/logout", name: "logout", component: Logout },
   { path: "/artists", name: "artists", component: ArtistsIndex },
+  { path: "/artists/:id/edit", name: "artists-edit", component: ArtistsEdit },
   { path: "/artists-new", name: "artists-new", component: ArtistsNew },
   { path: "/artists-join", name: "artists-join", component: ArtistsJoin },
   { path: "/artists/:id", name: "artists-show", component: ArtistsShow },
