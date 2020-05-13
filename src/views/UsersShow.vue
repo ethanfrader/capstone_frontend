@@ -14,6 +14,8 @@
         </div>
         <div class="profile-right">
           <h2>{{user.first_name}}'s artist pages:</h2>
+          <a class="btn btn-dark" href="/artists-new">Need to add an artist?</a>
+          <br></br>
           <div v-if="user.artists.length === 0">
             <h3>You don't have any linked artists!</h3>
           </div>
