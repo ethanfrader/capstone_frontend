@@ -4,15 +4,17 @@
       <div class="container">
         <div class="text-center">
           <h1 class="section-heading text-uppercase">Artists</h1>
-          <div class="row">
+          <div class="row row-cols-2">
             <div v-for="artist in artists">
-              <div class="col-lg-4 col-sm-6 mb-4">
+              <div class="col">
                 <a :href="`/artists/${artist.id}`">
                 <div class="portfolio-item">
                     <img class="img-fluid" :src="`${artist.images[0].url}`" alt="" />
-                  <div class="portfolio-caption">
-                    <div class="portfolio-caption-heading">{{artist.name}}</div>
-                    <div class="portfolio-caption-subheading text-muted">{{artist.location}}</div>
+                  <div class="">
+                    <div class="">
+                      <h4 class="subheading">{{artist.name}}</h4>
+                    </div>
+                    <div class="portfolio-caption-subheading text-muted m-3">{{artist.location}}</div>
                   </div>
                 </div>
                 </a>

@@ -8,6 +8,9 @@
           <a :href="`/artists/${artist.id}/edit`">
           <button class="btn btn-primary">Edit info</button>
           </a>
+          <a href="">
+          <button class="btn btn-primary">Edit images</button>
+          </a>
         </div>
         <h4>About them:</h4>
         <p>{{ artist.bio }}</p>
