@@ -10926,3 +10926,29 @@ a.bold-link {
   padding: 0.25rem;
   font-size: 1.5rem;
 }
+.artist-info {
+  width: 50%;
+  display: inline-block;
+  vertical-align: top;
+}
+.music-players {
+  width: 50%;
+  display: inline-block;
+  vertical-align: top;
+/* }
+.music-player-small {
+  width: 50%;
+  display: inline-block;
+  vertical-align: top;
+  padding-bottom: 1rem;
+}
+.music-player-right {
+  width: 95%;
+  display: inline-block;
+  vertical-align: top;
+}
+.music-player-left {
+  width: 95%;
+  display: inline-block;
+  vertical-align: top;
+} */
