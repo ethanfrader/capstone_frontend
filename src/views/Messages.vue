@@ -13,22 +13,31 @@
           </select>
           <label for="basic-dropdown">Conversation with: </label>
           <select name="basic-dropdown" v-model="receivingArtist">
-            <option v-for="message in messages" :value="message">{{message.recipient.name}}</option>
+            <option v-for="receivingArtist in receivingArtists" :value="receivingArtist">{{receivingArtist.name}}</option>
           </select>
         </div>
         <!-- <input type="submit" class="btn btn-primary" value="Submit"> -->
       </form>
 
-      <p>I am {{artist.name}} sending to {{receivingArtist.artist}}</p>
+      <div v-if="artist.id && receivingArtist.id">
+       <h4>{{artist.name}}'s conversation with {{receivingArtist.name}}:</h4>
+      </div>
 
-      <form v-if="this.artist.id !== undefined && this.receivingArtist.id !== undefined" v-on:submit.prevent="submit()">
+      <div v-if="artist.id && receivingArtist.id">
+        <form action="v-on:submit.prevent=submit()">
+          <textarea name="New Message" id="" cols="60" rows="3" v-model="messageText"></textarea>
+          <div class="container">
+          <button v-on:click="sendMessage()" class="btn btn-primary">Send Message</button>
+          </div>
+        </form>
+      </div>
+      <!-- <form v-if="this.artist.id !== undefined && this.receivingArtist.id !== undefined" v-on:submit.prevent="submit()">
         <label>New message for {{receivingArtist.artist.id}}: </label>
         <input type="text" v-model="messageText">
-      </form>
+      </form> -->
       <br>
-      <div v-for="message in messages">
+      <div v-for="message in messages">        
         <p v-if="message.artist.id === artist.id && message.recipient.id === receivingArtist.id" class="sent-message">{{message.text}}</p>
-
         <p v-if="message.recipient.id === artist.id && message.artist.id === receivingArtist.id" class="received-message">{{message.text}}</p>
       </div>
       </section>
@@ -57,6 +66,7 @@ export default {
       artist: {},
       artistMessages: [],
       receivingArtist: {},
+      receivingArtists: [],
       messageText: "",
       sendTo: {},
     };
@@ -66,7 +76,15 @@ export default {
       .get("/api/messages")
       .then(response => {
         console.log(response.data);
+        var receivers = [];
         this.messages = response.data;
+        this.messages.forEach(function(message) {
+          console.log(message.recipient);
+          receivers.push(message.recipient);
+        });
+        this.receivingArtists = receivers;
+        console.log("receiving artists:");
+        console.log(this.receivingArtists);
       })
       .catch(error => {
         console.log(error);
@@ -83,7 +101,23 @@ export default {
       });
   },
   methods: {
-    startMessage: function() {},
+    sendMessage: function() {
+      var params = {
+        artist_id: this.artist.id,
+        recipient_id: this.receivingArtist.id,
+        text: this.messageText,
+      };
+      axios
+        .post("/api/messages", params)
+        .then(response => {
+          this.$router.push("/messages");
+          console.log(this.message);
+        })
+        .catch(error => {
+          this.errors.push(error);
+          console.log(error);
+        });
+    },
   },
 };
 </script>
