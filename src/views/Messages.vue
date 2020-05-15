@@ -5,48 +5,59 @@
         <!-- <message-container /> -->
         <!-- <h4 v-for="message in messages">{{message.recipient.name}} - {{message.recipient.id}}</h4> -->
         <form v-on:submit.prevent="submit()">
-        <h1>Your Messages</h1>
-        <div class="filter">
-          <label for="basic-dropdown">Your artist page: </label>
-          <select name="basic-dropdown" v-model="artist">
-            <option v-for="artist in allArtists" :value="artist">{{artist.name}}</option>
-          </select>
-          <label for="basic-dropdown">Conversation with: </label>
-          <select name="basic-dropdown" v-model="receivingArtist">
-            <option v-for="receivingArtist in receivingArtists" :value="receivingArtist">{{receivingArtist.name}}</option>
-          </select>
-        </div>
-        <!-- <input type="submit" class="btn btn-primary" value="Submit"> -->
-      </form>
-
-      <div v-if="artist.id && receivingArtist.id">
-       <h4>{{artist.name}}'s conversation with {{receivingArtist.name}}:</h4>
-      </div>
-
-      <div v-if="artist.id && receivingArtist.id">
-        <form action="v-on:submit.prevent=submit()">
-          <textarea name="New Message" id="" cols="60" rows="3" v-model="messageText"></textarea>
-          <div class="container">
-          <button v-on:click="sendMessage()" class="btn btn-primary">Send Message</button>
+          <h1>Your Messages</h1>
+          <div class="filter">
+            <label for="basic-dropdown">Your artist page:</label>
+            <select name="basic-dropdown" v-model="artist">
+              <option v-for="artist in allArtists" :value="artist">{{ artist.name }}</option>
+            </select>
+            <label for="basic-dropdown">Conversation with:</label>
+            <select name="basic-dropdown" v-model="receivingArtist">
+              <option v-for="receivingArtist in receivingArtists" :value="receivingArtist">
+                {{ receivingArtist.name }}
+              </option>
+            </select>
           </div>
+          <!-- <input type="submit" class="btn btn-primary" value="Submit"> -->
         </form>
-      </div>
-      <!-- <form v-if="this.artist.id !== undefined && this.receivingArtist.id !== undefined" v-on:submit.prevent="submit()">
-        <label>New message for {{receivingArtist.artist.id}}: </label>
-        <input type="text" v-model="messageText">
-      </form> -->
-      <br>
-      <div v-for="message in messages">        
-        <p v-if="message.artist.id === artist.id && message.recipient.id === receivingArtist.id" class="sent-message">{{message.text}}</p>
-        <p v-if="message.recipient.id === artist.id && message.artist.id === receivingArtist.id" class="received-message">{{message.text}}</p>
-      </div>
+
+        <div v-if="artist.id && receivingArtist.id">
+          <h4>{{ artist.name }}'s conversation with {{ receivingArtist.name }}:</h4>
+        </div>
+
+        <div v-if="artist.id && receivingArtist.id">
+          <form action="v-on:submit.prevent=submit()">
+            <textarea name="New Message" id="" cols="60" rows="3" v-model="messageText"></textarea>
+            <div class="container">
+              <button v-on:click="sendMessage()" class="btn btn-primary">Send Message</button>
+            </div>
+          </form>
+        </div>
+        <br />
+
+        <div v-for="message in messages">
+          <div
+            v-if="message.artist.id === artist.id && message.recipient.id === receivingArtist.id"
+            class="sent-message"
+          >
+            <p>{{ message.text }}</p>
+            <small class="tiny-date">Sent {{ message.sent_at | moment("from", "now") }}</small>
+          </div>
+
+          <div
+            v-if="message.recipient.id === artist.id && message.artist.id === receivingArtist.id"
+            class="received-message"
+          >
+            <p>{{ message.text }}</p>
+            <small class="tiny-date">Received {{ message.sent_at | moment("from", "now") }}</small>
+          </div>
+        </div>
       </section>
     </div>
   </div>
 </template>
 
-<style>
-</style>
+<style></style>
 
 <script>
 var axios = require("axios");
@@ -117,6 +128,9 @@ export default {
           this.errors.push(error);
           console.log(error);
         });
+    },
+    howLongAgo: function(date) {
+      return moment(date).fromNow();
     },
   },
 };
