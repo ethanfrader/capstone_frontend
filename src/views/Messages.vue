@@ -20,6 +20,7 @@
           </div>
           <!-- <input type="submit" class="btn btn-primary" value="Submit"> -->
         </form>
+        <button v-on:click="openThread()">Open Thread</button>
 
         <div v-if="artist.id && receivingArtist.id">
           <h4>{{ artist.name }}'s conversation with {{ receivingArtist.name }}:</h4>
@@ -78,8 +79,10 @@ export default {
       artistMessages: [],
       receivingArtist: {},
       receivingArtists: [],
+      condensedConversations: [],
       messageText: "",
       sendTo: {},
+      currentThread: [],
     };
   },
   created: function() {
@@ -96,6 +99,8 @@ export default {
         this.receivingArtists = receivers;
         console.log("receiving artists:");
         console.log(this.receivingArtists);
+        this.condensedConversations = [...new Set(this.receivingArtists.map(x => x.name))];
+        console.log(this.condensedConversations);
       })
       .catch(error => {
         console.log(error);
@@ -129,8 +134,21 @@ export default {
           console.log(error);
         });
     },
-    howLongAgo: function(date) {
-      return moment(date).fromNow();
+    openThread: function() {
+      var params = {
+        artist_id: this.artist.id,
+      };
+      console.log("params being sent: ");
+      console.log(params);
+      axios
+        .get("/api/messages", params)
+        .then(response => {
+          this.currentThread = response.data;
+          console.log(response.data);
+        })
+        .catch(error => {
+          console.log(error);
+        });
     },
   },
 };
