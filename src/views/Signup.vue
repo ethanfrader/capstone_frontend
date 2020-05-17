@@ -1,6 +1,7 @@
 <template>
   <div class="signup">
     <div class="container">
+      <section>
       <form v-on:submit.prevent="submit()">
         <h1>Signup</h1>
         <ul>
@@ -28,6 +29,7 @@
         </div>
         <input type="submit" class="btn btn-primary" value="Submit">
       </form>
+      </section>
     </div>
   </div>
 </template>

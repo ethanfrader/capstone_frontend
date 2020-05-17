@@ -4,6 +4,7 @@
       <div>
         <form v-on:submit.prevent="submit()">
         <h1>New Artist:</h1>
+        {{currentUser}}
         <a href="/artists-join">(Already a part of an existing group?)</a>
         <ul>
           <li class="text-danger" v-for="error in errors">{{ error }}</li>
@@ -51,6 +52,7 @@ export default {
     return {
       user: {},
       currentUser: {},
+      errors: [],
       name: "",
       location: "",
       bio: "",
@@ -60,15 +62,6 @@ export default {
     };
   },
   created: function() {
-    axios
-      .get("/api/users/" + this.$route.params.id)
-      .then(response => {
-        console.log(response.data);
-        this.user = response.data;
-      })
-      .catch(error => {
-        console.log(error);
-      });
     axios
       .get("/api/users/" + localStorage.getItem("userId"))
       .then(response => {
@@ -82,7 +75,7 @@ export default {
   methods: {
     submit: function() {
       var params = {
-        name: this.Name,
+        name: this.name,
         bio: this.bio,
         location: this.location,
         members: this.members,

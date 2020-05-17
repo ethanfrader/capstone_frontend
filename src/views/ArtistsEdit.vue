@@ -31,6 +31,14 @@
       </form>
     </div>
     <br>
+    <div>
+      <form v-on:submit.prevent="submit()">
+        <label for="">Add a new image: </label>
+        <input type="text" v-model="newImageUrl" placeholder="Image Url">
+        <button class="btn btn-primary" v-on:click="uploadImage()">Upload</button>
+      </form>
+    </div>
+    <br>
     </section>
   </div>
 </template>
@@ -53,6 +61,7 @@ export default {
       genre: "",
       members: "",
       errors: [],
+      newImageUrl: "",
     };
   },
   created: function() {
@@ -100,6 +109,20 @@ export default {
       };
       axios
         .patch("/api/artists/" + this.artist.id, params)
+        .then(response => {
+          this.$router.push("/artists/" + this.artist.id);
+        })
+        .catch(error => {
+          this.errors = error.response.data.errors;
+        });
+    },
+    uploadImage: function() {
+      var params = {
+        url: this.newImageUrl,
+        artist_id: this.artist.id,
+      };
+      axios
+        .post("/api/images", params)
         .then(response => {
           this.$router.push("/artists/" + this.artist.id);
         })
