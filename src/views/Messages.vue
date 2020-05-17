@@ -8,7 +8,7 @@
           <h1>Your Messages</h1>
           <div class="filter">
             <label for="basic-dropdown">Your artist page:</label>
-            <select name="basic-dropdown" v-model="artist">
+            <select @change="openConversations()" name="basic-dropdown" v-model="artist">
               <option v-for="artist in allArtists" :value="artist">{{ artist.name }}</option>
             </select>
             <button v-on:click="openConversations()">Open Conversations</button>
@@ -18,7 +18,7 @@
 
         <div class="filter" v-if="isReady == true && artist.name">
           <label for="basic-dropdown">Conversation with:</label>
-            <select name="basic-dropdown" v-model="receivingArtistName">
+            <select @change="seeThread()" name="basic-dropdown" v-model="receivingArtistName">
               <option v-for="convo in allConversationThreads" :value="convo">
                 {{ convo }}
               </option>
