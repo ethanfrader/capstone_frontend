@@ -1,12 +1,14 @@
 <template>
   <div class="artists">
     <section>
-      <input type="text" v-model="search">
       <div class="container">
+        <div class="right-side-search">
+          <input type="text" v-model="search" placeholder="Search for artists...">
+        </div>
         <div class="text-center">
-          <h1 class="section-heading text-uppercase">Artists</h1>
+          <h1 class="section-heading text-uppercase" id="artists-header">Artists</h1>
           <div class="row row-cols-2">
-            <div v-for="artist in artists">
+            <div v-for="artist in filteredArtists">
               <div class="col">
                 <a :href="`/artists/${artist.id}`">
                 <div class="portfolio-item">
@@ -39,7 +41,6 @@ export default {
     return {
       artists: [],
       search: "",
-      filteredArtists: [],
     };
   },
   created: function() {
@@ -53,7 +54,7 @@ export default {
       });
   },
   computed: {
-    filteredList() {
+    filteredArtists() {
       return this.artists.filter(artist => {
         return artist.name.toLowerCase().includes(this.search.toLowerCase());
       });
