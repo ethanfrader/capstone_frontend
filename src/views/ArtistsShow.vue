@@ -9,9 +9,6 @@
             <a :href="`/artists/${artist.id}/edit`">
             <button class="btn btn-primary">Edit info</button>
             </a>
-            <a href="">
-            <button class="btn btn-primary">Edit images</button>
-            </a>
           </div>
           <h4>About them:</h4>
           <p>{{ artist.bio }}</p>
@@ -20,6 +17,9 @@
         </div>
         <div class="music-players">
           <h4>Music:</h4>
+          <div v-if="artist.music_links.length == 0">
+            <p>This artist doesn't have any music links yet!</p>
+          </div>
           <div class="music-player-small" v-for="link in artist.music_links">
             <iframe class="music-player-right" v-if="link.url.split('.')[1] === 'bandcamp'" :src="`${link.url}`" width="100%" height="380" frameborder="0" allowtransparency="true" allow="encrypted-media"></iframe>
             <iframe class="music-player-left" v-if="link.url.split('.')[1] === 'spotify' && link.url.split('/')[3] === 'album'" :src="`https://open.spotify.com/embed/album/${link.url.split('/')[4]}`" width="100%" height="380" frameborder="0" allowtransparency="true" allow="encrypted-media"></iframe>
@@ -35,6 +35,9 @@
         </div>
         <br>
         <h4>Social Media:</h4>
+        <div v-if="artist.media_links.length == 0">
+          <p>This artist hasn't linked any social media yet!</p>
+        </div>
         <div v-for="link in artist.media_links">
           <a :href="`${link.url}`">{{link.url}}</a>
         </div>
