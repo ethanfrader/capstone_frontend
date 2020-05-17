@@ -5,6 +5,25 @@
         <div class="artist-info">
           <h1 class="heading">{{ artist.name }}</h1>
           <h4>{{artist.location}} -- {{artist.genre}}</h4>
+
+          <button v-if="readyToSend == false" v-on:click="openMessenger()" class="btn btn-dark">Send a message</button>
+          <button v-if="readyToSend == true" v-on:click="openMessenger()" class="btn btn-dark">Cancel</button>
+          <form v-if="readyToSend == true" class="form-group" action="v-on:submit.prevent=submit()">
+            <input class="form-control" type="text" placeholder="New message" v-model="messageText">
+            <div class="filter">
+              <label for="basic-dropdown">Sending as: </label>
+                <select class="" name="basic-dropdown" v-model="myArtist">
+                  <option v-for="artist in currentUser.artists" :value="artist">
+                    {{ artist.name }}
+                  </option>
+                </select>
+            </div>
+            <button class="btn btn-primary" v-on:click="sendMessage()">Send</button>
+          </form>
+          <p>{{messageText}}</p>
+          <p>{{artist.name}}</p>
+          <p>{{myArtist.name}}</p>
+
           <div v-if="artist.users.some(user => user.id === currentUser.id)">
             <a :href="`/artists/${artist.id}/edit`">
             <button class="btn btn-primary">Edit info</button>
@@ -58,6 +77,10 @@ export default {
       artist: [],
       images: [],
       currentUser: {},
+      readyToSend: false,
+      messageText: "",
+      myArtist: {},
+      errors: [],
     };
   },
   created: function() {
@@ -79,6 +102,27 @@ export default {
         console.log(error);
       });
   },
-  methods: {},
+  methods: {
+    openMessenger: function() {
+      this.readyToSend = !this.readyToSend;
+    },
+    sendMessage: function() {
+      var params = {
+        artist_id: this.artist.id,
+        recipient_id: this.myArtist.id,
+        text: this.messageText,
+      };
+      axios
+        .post("/api/messages", params)
+        .then(response => {
+          this.$router.push("/messages");
+          console.log(this.message);
+        })
+        .catch(error => {
+          this.errors.push(error);
+          console.log(error);
+        });
+    },
+  },
 };
 </script>
