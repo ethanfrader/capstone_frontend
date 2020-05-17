@@ -32,13 +32,33 @@
     </div>
     <br>
     <div>
-      <form v-on:submit.prevent="submit()">
+      <form class="form-group" v-on:submit.prevent="submit()">
         <label for="">Add a new image: </label>
-        <input type="text" v-model="newImageUrl" placeholder="Image Url">
+        <input  class="form-control" type="text" v-model="newImageUrl" placeholder="Image Url">
+        <br>
         <button class="btn btn-primary" v-on:click="uploadImage()">Upload</button>
       </form>
     </div>
     <br>
+    <div>
+      <form class="form-group" v-on:submit.prevent="submit()">
+        <label for="">Add a new music link: </label>
+        <input class="form-control" type="text" v-model="newMusicUrl" placeholder="Spotify or Bandcamp Url">
+        <br>
+        <button class="btn btn-primary" v-on:click="uploadMusic()">Upload</button>
+      </form>
+    </div>
+    <div v-if="artist.images.length > 0">
+      <h3>Need to delete a photo?</h3>
+      <button v-if="readyToDelete == false" v-on:click="armForDeletion()" class="btn btn-dark">Enable photos for permanent deletion</button>
+      <button v-if="readyToDelete == true" v-on:click="disarmForDeletion()" class="btn btn-dark">Hide photos</button>
+      <br>
+      <div v-if="readyToDelete == true" v-for="image in artist.images">
+        <br>
+        <img :src="`${image.url}`" height="200rem">
+        <button class="btn btn-dark" v-on:click="deleteImage(image)">Delete</button>
+      </div>
+    </div>
     </section>
   </div>
 </template>
@@ -62,6 +82,9 @@ export default {
       members: "",
       errors: [],
       newImageUrl: "",
+      newMusicUrl: "",
+      editedImageUrl: "",
+      readyToDelete: false,
     };
   },
   created: function() {
@@ -129,6 +152,36 @@ export default {
         .catch(error => {
           this.errors = error.response.data.errors;
         });
+    },
+    uploadMusic: function() {
+      var params = {
+        url: this.newMusicUrl,
+        artist_id: this.artist.id,
+      };
+      axios
+        .post("/api/music-links", params)
+        .then(response => {
+          this.$router.push("/artists/" + this.artist.id);
+        })
+        .catch(error => {
+          this.errors = error.response.data.errors;
+        });
+    },
+    deleteImage: function(image) {
+      axios
+        .delete("/axios/" + image.id)
+        .then(response => {
+          this.$router.push("/artists/" + this.artist.id);
+        })
+        .catch(error => {
+          this.errors = error.response.data.errors;
+        });
+    },
+    armForDeletion: function() {
+      this.readyToDelete = true;
+    },
+    disarmForDeletion: function() {
+      this.readyToDelete = false;
     },
   },
 };
