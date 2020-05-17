@@ -9,18 +9,20 @@
           <h1 class="section-heading text-uppercase" id="artists-header">Artists</h1>
           <div class="row row-cols-2">
             <div v-for="artist in filteredArtists">
-              <div class="col">
-                <a :href="`/artists/${artist.id}`">
-                <div class="portfolio-item">
-                    <img class="img-fluid" :src="`${artist.images[0].url}`" alt="" />
-                  <div class="">
-                    <div class="">
-                      <h4 class="subheading">{{artist.name}}</h4>
+              <div v-if="artist.images.length > 0">
+                <div class="col">
+                  <a :href="`/artists/${artist.id}`">
+                    <div class="portfolio-item">
+                        <img class="img-fluid" :src="`${artist.images[0].url}`" alt="" />
+                      <div class="">
+                        <div class="">
+                          <h4 class="subheading">{{artist.name}}</h4>
+                        </div>
+                        <div class="portfolio-caption-subheading text-muted m-3">{{artist.location}}</div>
+                      </div>
                     </div>
-                    <div class="portfolio-caption-subheading text-muted m-3">{{artist.location}}</div>
-                  </div>
+                  </a>
                 </div>
-                </a>
               </div>
             </div>
           </div>
