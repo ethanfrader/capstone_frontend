@@ -4,7 +4,6 @@
       <div>
         <form v-on:submit.prevent="submit()">
         <h1>New Artist:</h1>
-        {{currentUser}}
         <a href="/artists-join">(Already a part of an existing group?)</a>
         <ul>
           <li class="text-danger" v-for="error in errors">{{ error }}</li>

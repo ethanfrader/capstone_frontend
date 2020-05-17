@@ -5,6 +5,7 @@
         <div class="profile-left">
           <h1>{{ user.first_name }} {{ user.last_name}}</h1>
           <img :src="user.profile_picture">
+          <img v-if="user.profile_picture == undefined" src="https://www.searchpng.com/wp-content/uploads/2019/02/Deafult-Profile-Pitcher.png">
           <div v-if="user.id === currentUser.id">
             <a :href="`/users/${user.id}/edit`">
               <button class="btn btn-primary">Edit info</button>

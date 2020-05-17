@@ -11,10 +11,9 @@
             <select name="basic-dropdown" v-model="artist">
               <option v-for="artist in allArtists" :value="artist">{{ artist.name }}</option>
             </select>
-            
+            <button v-on:click="openConversations()">Open Conversations</button>
           </div>
           <!-- <input type="submit" class="btn btn-primary" value="Submit"> -->
-          <button v-on:click="openConversations()">Open Conversations</button>
         </form>
 
         <div class="filter" v-if="isReady == true && artist.name">
@@ -188,7 +187,12 @@ export default {
       var messagesPlaceholder = [];
       var i = 0;
       while (i < this.messages.length) {
-        if (this.messages[i].artist.name === this.artist.name || this.messages[i].recipient.name === this.artist.name) {
+        if (
+          (this.messages[i].artist.name === this.artist.name &&
+            this.messages[i].recipient.name === this.receivingArtistName) ||
+          (this.messages[i].recipient.name === this.artist.name &&
+            this.messages[i].artist.name === this.receivingArtistName)
+        ) {
           messagesPlaceholder.push(this.messages[i]);
         }
         i += 1;
