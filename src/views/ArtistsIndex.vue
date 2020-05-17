@@ -1,6 +1,7 @@
 <template>
   <div class="artists">
     <section>
+      <input type="text" v-model="search">
       <div class="container">
         <div class="text-center">
           <h1 class="section-heading text-uppercase">Artists</h1>
@@ -37,6 +38,8 @@ export default {
   data: function() {
     return {
       artists: [],
+      search: "",
+      filteredArtists: [],
     };
   },
   created: function() {
@@ -48,6 +51,13 @@ export default {
       .catch(error => {
         console.log(error);
       });
+  },
+  computed: {
+    filteredList() {
+      return this.artists.filter(artist => {
+        return artist.name.toLowerCase().includes(this.search.toLowerCase());
+      });
+    },
   },
   methods: {},
 };

@@ -193,15 +193,15 @@ export default {
         }
         i += 1;
       }
-      if (this.messages[0].artist.id === this.artist.id) {
-        this.receivingArtist = this.messages[0].recipient;
-      }
-      if (this.messages[0].recipient.id === this.artist.id) {
-        this.receivingArtist = this.messages[0].artist;
-      }
+
       this.conversationMessages = messagesPlaceholder;
       console.log("refined converstaion messages");
       console.log(this.conversationMessages);
+      if (this.conversationMessages[0].artist.id === this.artist.id) {
+        this.receivingArtist = this.conversationMessages[0].recipient;
+      } else {
+        this.receivingArtist = this.conversationMessages[0].artist;
+      }
     },
   },
 };
