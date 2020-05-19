@@ -23,15 +23,13 @@
             </div>
             <button class="btn btn-primary" v-on:click="sendMessage()">Send</button>
           </form>
-          <p>{{messageText}}</p>
-          <p>{{artist.name}}</p>
-          <p>{{myArtist.name}}</p>
 
           <div v-if="artist.users.some(user => user.id === currentUser.id)">
             <a :href="`/artists/${artist.id}/edit`">
             <button class="btn btn-primary">Edit info</button>
             </a>
           </div>
+          
           <h4>About them:</h4>
           <p>{{ artist.bio }}</p>
           <h4>Members:</h4>
@@ -98,7 +96,7 @@ export default {
         console.log(error);
       });
     axios
-      .get("/api/users/" + localStorage.userId)
+      .get("/api/users/" + localStorage.getItem("userId"))
       .then(response => {
         this.currentUser = response.data;
       })
@@ -117,14 +115,13 @@ export default {
         text: this.messageText,
       };
       this.message = params;
-      console.log(params);
+      console.log(this.message);
       console.log("current user id: " + this.currentUser.id);
       axios
         .post("/api/messages", params)
         .then(response => {
           this.message = response.data;
           console.log(this.message);
-          this.$router.push("/messages");
         })
         .catch(error => {
           this.errors.push(error);

@@ -27,7 +27,7 @@
                 <label for="">New Message:</label>
                 <input type="text" v-model="messageText" />
                 <label for="basic-dropdown">Your artist page:</label>
-                <select name="basic-dropdown" v-model="slectedArtist">
+                <select name="basic-dropdown" v-model="selectedArtist">
                   <option v-for="artist in allArtists" :value="artist">{{ artist.name }}</option>
                 </select>
                 <button class="btn-dark" v-on:click="sendMessage()">Send</button>
@@ -93,10 +93,12 @@ export default {
         recipient_id: this.currentPost.artist.id,
         text: this.messageText,
       };
+      console.log("params:");
+      console.log(params);
       axios
         .post("/api/messages", params)
         .then(response => {
-          this.$router.push("/messages");
+          this.message = response.data;
           console.log(this.message);
         })
         .catch(error => {
