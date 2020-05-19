@@ -11,7 +11,7 @@
             <select @change="openConversations()" name="basic-dropdown" v-model="artist">
               <option v-for="artist in allArtists" :value="artist">{{ artist.name }}</option>
             </select>
-            <button v-on:click="openConversations()">Open Conversations</button>
+            <!-- <button v-on:click="openConversations()">Open Conversations</button> -->
           </div>
           <!-- <input type="submit" class="btn btn-primary" value="Submit"> -->
         </form>
@@ -23,7 +23,7 @@
                 {{ convo }}
               </option>
             </select>
-          <button v-on:click="seeThread()">See Thread</button>
+          <!-- <button v-on:click="seeThread()">See Thread</button> -->
         </div>
 
         <div v-if="artist.id && receivingArtist.id">
@@ -40,7 +40,7 @@
         </div>
         <br />
 
-        <div v-for="message in conversationMessages">
+        <div v-for="message in conversationMessages" v-bind:key="message.id">
           <div
             v-if="message.artist.id === artist.id && message.recipient.id === receivingArtist.id"
             class="sent-message"
@@ -143,19 +143,31 @@ export default {
       axios
         .post("/api/messages", params)
         .then(response => {
-          this.$router.push("/messages");
-          console.log(this.message);
+          var message = response.data;
+          console.log(this.conversationMessages[0]);
+          console.log(message[0]);
+          this.conversationMessages.unshift({
+            artist: message[0].artist,
+            id: message[0].id,
+            recipient: message[0].recipient,
+            sent_at: message[0].sent_at,
+            text: message[0].text,
+            user: message[0].user,
+          });
+          console.log(this.conversationMessages);
         })
         .catch(error => {
           this.errors.push(error);
           console.log(error);
         });
+      this.messageText = "";
+      this.$router.go();
     },
     openConversations: function() {
       var myArtistName = this.artist.name;
       console.log(myArtistName);
       if (myArtistName !== undefined) {
-        this.isReady = !this.isReady;
+        this.isReady = true;
         console.log("flipped isReady");
       }
       axios

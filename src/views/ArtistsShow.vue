@@ -6,6 +6,9 @@
           <h1 class="heading">{{ artist.name }}</h1>
           <h4>{{artist.location}} -- {{artist.genre}}</h4>
 
+          <ul>
+            <li class="text-danger" v-for="error in errors">{{ error }}</li>
+          </ul>
           <button v-if="readyToSend == false" v-on:click="openMessenger()" class="btn btn-dark">Send a message</button>
           <button v-if="readyToSend == true" v-on:click="openMessenger()" class="btn btn-dark">Cancel</button>
           <form v-if="readyToSend == true" class="form-group" action="v-on:submit.prevent=submit()">
@@ -81,6 +84,7 @@ export default {
       messageText: "",
       myArtist: {},
       errors: [],
+      message: {},
     };
   },
   created: function() {
@@ -112,11 +116,15 @@ export default {
         recipient_id: this.myArtist.id,
         text: this.messageText,
       };
+      this.message = params;
+      console.log(params);
+      console.log("current user id: " + this.currentUser.id);
       axios
         .post("/api/messages", params)
         .then(response => {
-          this.$router.push("/messages");
+          this.message = response.data;
           console.log(this.message);
+          this.$router.push("/messages");
         })
         .catch(error => {
           this.errors.push(error);
