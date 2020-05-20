@@ -105,6 +105,7 @@ export default {
           this.errors.push(error);
           console.log(error);
         });
+      this.messageText = "";
     },
   },
 };
