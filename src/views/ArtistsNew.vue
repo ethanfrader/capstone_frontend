@@ -84,7 +84,7 @@ export default {
       axios
         .post("/api/artists", params)
         .then(response => {
-          this.$router.push("/artists/" + this.user.id);
+          this.$router.push("/users/" + this.user.id);
         })
         .catch(error => {
           this.errors = error.response.data.errors;

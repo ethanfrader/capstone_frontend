@@ -110,8 +110,8 @@ export default {
     },
     sendMessage: function() {
       var params = {
-        artist_id: this.artist.id,
-        recipient_id: this.myArtist.id,
+        artist_id: this.myArtist.id,
+        recipient_id: this.artist.id,
         text: this.messageText,
       };
       this.message = params;
