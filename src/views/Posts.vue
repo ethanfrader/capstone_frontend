@@ -4,10 +4,10 @@
     <section class="page-section">
       <div class="text-center">
         <div>
-          <router-link class="btn btn-xl btn-accent" to="/posts-new" id="add-post">Add Post</router-link>
+          <router-link class="btn btn-dark-accent" to="/posts-new" id="add-post">Add Post</router-link>
         </div>
       </div>
-      <h1>Recent posts:</h1>
+      <h1 class="added-space">Recent posts:</h1>
 
       <div v-for="post in posts">
         <div id="post-container">
@@ -16,7 +16,7 @@
             <a class="bold-link" :href="`/artists/${post.artist.id}`">
               <h4>{{ post.artist.name }}:</h4>
             </a>
-            <div class="post-text">
+            <div class="post-text added-space">
               <p>{{ post.text }}</p>
               <small>Posted {{ post.created_at | moment("from", "now") }}</small>
             </div>
