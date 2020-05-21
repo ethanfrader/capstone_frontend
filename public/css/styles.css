@@ -11008,5 +11008,7 @@ a.bold-link {
   margin-bottom: 1rem;
 }
 .img-restraint {
-  max-height: 23rem;
+  object-fit: cover;
+  height: 22rem;
+  width: 30rem;
 }
