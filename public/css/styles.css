@@ -11004,3 +11004,9 @@ a.bold-link {
   background-color: #fff;
   min-height: 40rem;
 }
+.added-space {
+  margin-bottom: 1rem;
+}
+.img-restraint {
+  max-height: 23rem;
+}

@@ -6,14 +6,14 @@
           <input type="text" v-model="search" placeholder="Search for artists...">
         </div>
         <div class="text-center">
-          <h1 class="section-heading text-uppercase" id="artists-header">Artists</h1>
+          <h1 class="section-heading text-uppercase added-space" id="artists-header">Artists</h1>
           <div class="row row-cols-2">
             <div v-for="artist in filteredArtists">
               <div v-if="artist.images.length > 0">
                 <div class="col">
                   <a :href="`/artists/${artist.id}`">
                     <div class="portfolio-item">
-                        <img class="img-fluid" :src="`${artist.images[0].url}`" alt="" />
+                        <img class="img-fluid img-restraint" :src="`${artist.images[0].url}`" alt="" />
                       <div class="">
                         <div class="">
                           <h4 class="subheading">{{artist.name}}</h4>

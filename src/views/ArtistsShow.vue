@@ -10,7 +10,7 @@
           <ul>
             <li class="text-danger" v-for="error in errors">{{ error }}</li>
           </ul>
-          <button v-if="readyToSend == false" v-on:click="openMessenger()" class="btn btn-dark">Send a message</button>
+          <button v-if="readyToSend == false" v-on:click="openMessenger()" class="btn btn-dark added-space">Send a message</button>
           <button v-if="readyToSend == true" v-on:click="openMessenger()" class="btn btn-dark">Cancel</button>
           <form v-if="readyToSend == true" class="form-group" action="v-on:submit.prevent=submit()">
             <input class="form-control" type="text" placeholder="New message" v-model="messageText">
@@ -22,12 +22,12 @@
                   </option>
                 </select>
             </div>
-            <button class="btn btn-primary" v-on:click="sendMessage()">Send</button>
+            <button class="btn btn-primary added-space" v-on:click="sendMessage()">Send</button>
           </form>
 
           <div v-if="artist.users.some(user => user.id === currentUser.id)">
             <a :href="`/artists/${artist.id}/edit`">
-            <button class="btn btn-primary">Edit info</button>
+            <button class="btn btn-primary added-space">Edit info</button>
             </a>
           </div>
           
@@ -36,7 +36,7 @@
           <h4>Members:</h4>
           <p>{{artist.members}}</p>
         </div>
-        <div class="music-players">
+        <div class="music-players added-space">
           <h4>Music:</h4>
           <div v-if="artist.music_links.length == 0">
             <p>This artist doesn't have any music links yet!</p>
@@ -52,7 +52,7 @@
         </div>
         
         <div v-for="image in images">
-          <img class="img-fluid" :src="image.url" height=200px>
+          <img class="img-fluid added-space" :src="image.url" height=200px>
         </div>
         <br>
         <h4>Social Media:</h4>
