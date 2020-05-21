@@ -1,5 +1,6 @@
 <template>
-  <div>
+  <div class="backing-bars">
+  <div class="container primary-content">
     <section class="page-section">
       <div class="text-center">
         <div>
@@ -37,6 +38,7 @@
         </div>
       </div>
     </section>
+  </div>
   </div>
 </template>
 

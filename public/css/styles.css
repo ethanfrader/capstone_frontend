@@ -10996,3 +10996,11 @@ a.bold-link {
   margin-top: 2.5rem;
   color: #fed136;
 }
+.backing-bars {
+  background-color: #eee;
+  min-height: 40rem;
+}
+.primary-content {
+  background-color: #fff;
+  min-height: 40rem;
+}

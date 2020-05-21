@@ -1,7 +1,7 @@
 <template>
-  <div class="artists">
+  <div class="backing-bars">
+    <div class="container primary-content">
     <section>
-      <div class="container">
         <div class="right-side-search">
           <input type="text" v-model="search" placeholder="Search for artists...">
         </div>
@@ -27,8 +27,8 @@
             </div>
           </div>
         </div>
-      </div>
     </section>
+    </div>
   </div>
 </template>
 

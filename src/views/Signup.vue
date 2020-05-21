@@ -1,6 +1,6 @@
 <template>
-  <div class="signup">
-    <div class="container">
+  <div class="backing-bars">
+    <div class="container primary-content">
       <section>
       <form v-on:submit.prevent="submit()">
         <h1>Signup</h1>

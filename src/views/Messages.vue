@@ -1,6 +1,6 @@
 <template>
-  <div>
-    <div>
+  <div class="backing-bars">
+    <div class="container primary-content">
       <section class="page-section">
         <!-- <message-container /> -->
         <!-- <h4 v-for="message in messages">{{message.recipient.name}} - {{message.recipient.id}}</h4> -->

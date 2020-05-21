@@ -1,5 +1,6 @@
 <template>
-  <div class="container">
+  <div class="backing-bars">
+  <div class="container primary-content">
     <section>
       <div>
         <form v-on:submit.prevent="submit()">
@@ -37,6 +38,7 @@
     </div>
     <br>
     </section>
+  </div>
   </div>
 </template>
 
@@ -84,7 +86,7 @@ export default {
       axios
         .post("/api/artists", params)
         .then(response => {
-          this.$router.push("/users/" + this.user.id);
+          this.$router.push("/users/" + localStorage.getItem("userId"));
         })
         .catch(error => {
           this.errors = error.response.data.errors;

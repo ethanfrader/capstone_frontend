@@ -1,5 +1,6 @@
 <template>
-  <div class="container">
+  <div class="backing-bars">
+    <div class="container primary-content">
     <section>
       <div>
         <form v-on:submit.prevent="submit()">
@@ -60,6 +61,7 @@
       </div>
     </div>
     </section>
+    </div>
   </div>
 </template>
 

@@ -1,5 +1,6 @@
 <template>
-  <div class="container">
+  <div class="backing-bars">
+  <div class="container primary-content">
     <section>
       <form v-on:submit.prevent="submit()">
           <h1>New Post</h1>
@@ -19,6 +20,7 @@
           <input type="submit" class="btn btn-primary" value="Submit">
         </form>
       </section>
+  </div>
   </div>
 </template>
 
